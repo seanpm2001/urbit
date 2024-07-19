@@ -13,7 +13,7 @@ export function makeRoutePath(resource, includeQuery = false) {
 
 export function msToDa(ms, mil) {
   const d = new Date(ms);
-  const fil = function(n) {
+  var fil = function(n) {
     return n >= 10 ? n : "0" + n;
   };
   return (
@@ -23,10 +23,7 @@ export function msToDa(ms, mil) {
     `${fil(d.getUTCHours())}.` +
     `${fil(d.getUTCMinutes())}.` +
     `${fil(d.getUTCSeconds())}` +
-    //NOTE  poor man's pretty @da milliseconds
-    `${!mil ? '' :
-       '..' + Math.floor((d.getUTCMilliseconds() / 1000) * 0x10000)
-              .toString(16).padStart(4, '0')}`
+    `${mil ? "..0000" : ""}`
   );
 }
 
